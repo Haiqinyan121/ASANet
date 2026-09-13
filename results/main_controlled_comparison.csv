@@ -1,0 +1,8 @@
+dataset,method,training_iterations,psnr,ssim
+LOLv1,RetinexMamba (controlled),300000,24.07,0.858
+LOLv1,ASANet,300000,24.67,0.863
+LOLv2-real,RetinexMamba (controlled),300000,21.83,0.873
+LOLv2-real,ASANet,300000,22.58,0.875
+LOLv2-syn,RetinexMamba (controlled),300000,25.64,0.943
+LOLv2-syn,ASANet,300000,26.26,0.947
+

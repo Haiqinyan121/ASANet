@@ -1,0 +1,19 @@
+# Replace /path/to/domain with the image-manifest directory for one domain.
+train: /path/to/domain/train.txt
+val: /path/to/domain/val.txt
+test: /path/to/domain/test.txt
+nc: 12
+names:
+  0: Bicycle
+  1: Boat
+  2: Bottle
+  3: Bus
+  4: Car
+  5: Cat
+  6: Chair
+  7: Cup
+  8: Dog
+  9: Motorbike
+  10: People
+  11: Table
+

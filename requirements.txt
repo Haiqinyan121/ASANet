@@ -1,0 +1,20 @@
+# Install PyTorch 1.13.0+cu117, TorchVision 0.14.0+cu117, and
+# TorchAudio 0.13.0 separately as documented in README.md.
+numpy
+opencv-python
+Pillow
+PyYAML
+scipy
+scikit-image
+scikit-learn
+einops
+timm==0.4.12
+packaging
+causal-conv1d==1.0.0
+mamba-ssm==1.0.1
+triton==2.0.0
+tqdm
+natsort
+lmdb
+requests
+fvcore

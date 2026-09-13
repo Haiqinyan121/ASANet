@@ -1,0 +1,7 @@
+input_domain,map50,map50_95,test_images,test_instances
+Raw low-light input,61.2,32.0,736,2176
+RetinexMamba,59.2,30.9,736,2176
+Retinexformer,57.4,30.4,736,2176
+CWNet,59.4,31.1,736,2176
+ASANet,59.7,31.1,736,2176
+

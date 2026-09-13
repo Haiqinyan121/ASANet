@@ -1,0 +1,93 @@
+{
+  "dataset_name": "ExDark-Input",
+  "seed": 42,
+  "train_ratio": 0.8,
+  "val_ratio": 0.1,
+  "class_names": [
+    "Bicycle",
+    "Boat",
+    "Bottle",
+    "Bus",
+    "Car",
+    "Cat",
+    "Chair",
+    "Cup",
+    "Dog",
+    "Motorbike",
+    "People",
+    "Table"
+  ],
+  "image_counts": {
+    "Bicycle": 652,
+    "Boat": 679,
+    "Bottle": 547,
+    "Bus": 527,
+    "Car": 638,
+    "Cat": 735,
+    "Chair": 648,
+    "Cup": 519,
+    "Dog": 801,
+    "Motorbike": 503,
+    "People": 609,
+    "Table": 505
+  },
+  "split_counts": {
+    "train": {
+      "Bicycle": 522,
+      "Boat": 543,
+      "Bottle": 438,
+      "Bus": 422,
+      "Car": 510,
+      "Cat": 588,
+      "Chair": 518,
+      "Cup": 415,
+      "Dog": 641,
+      "Motorbike": 402,
+      "People": 487,
+      "Table": 404
+    },
+    "val": {
+      "Bicycle": 65,
+      "Boat": 68,
+      "Bottle": 55,
+      "Bus": 53,
+      "Car": 64,
+      "Cat": 74,
+      "Chair": 65,
+      "Cup": 52,
+      "Dog": 80,
+      "Motorbike": 50,
+      "People": 61,
+      "Table": 50
+    },
+    "test": {
+      "Bicycle": 65,
+      "Boat": 68,
+      "Bottle": 54,
+      "Bus": 52,
+      "Car": 64,
+      "Cat": 73,
+      "Chair": 65,
+      "Cup": 52,
+      "Dog": 80,
+      "Motorbike": 51,
+      "People": 61,
+      "Table": 51
+    }
+  },
+  "object_counts_by_class_id": {
+    "0": 1120,
+    "4": 2927,
+    "3": 706,
+    "6": 2377,
+    "10": 7460,
+    "9": 1072,
+    "8": 1018,
+    "11": 1483,
+    "2": 1593,
+    "1": 1389,
+    "5": 909,
+    "7": 1656
+  },
+  "num_images": 7363
+}

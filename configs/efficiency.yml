@@ -1,0 +1,174 @@
+runtime:
+  device: auto
+  cuda_visible_devices: "0"
+  seed: 123
+  cudnn_benchmark: true
+  allow_tf32: false
+
+  benchmark:
+    backend: auto
+    warmup: 50
+    runs: 200
+    memory_runs: 20
+
+  input:
+    batch_size: 1
+    channels: 3
+    height: 128
+    width: 128
+    dtype: float32
+
+output:
+  csv: ../benchmark_outputs/asanet_efficiency.csv
+  markdown: ../benchmark_outputs/asanet_efficiency.md
+
+methods:
+  - name: baseline
+    repo_root: ..
+    silence_stdout: true
+    builder:
+      type: class
+      file: basicsr/models/archs/ASANet_arch.py
+      package: basicsr.models.archs
+      class_name: ASANet
+      kwargs:
+        in_channels: 3
+        out_channels: 3
+        n_feat: 40
+        stage: 1
+        num_blocks: [1, 2, 2]
+        d_state: 16
+        illu_use_a: false
+        illu_use_b: false
+        ffn_use_sem: false
+    forward:
+      output_mode: tensor
+
+  # Fine-grained illumination-estimator ablation: AIPM only.
+  - name: AIPM-only
+    repo_root: ..
+    silence_stdout: true
+    builder:
+      type: class
+      file: basicsr/models/archs/ASANet_arch.py
+      package: basicsr.models.archs
+      class_name: ASANet
+      kwargs:
+        in_channels: 3
+        out_channels: 3
+        n_feat: 40
+        stage: 1
+        num_blocks: [1, 2, 2]
+        d_state: 16
+        illu_use_a: true
+        illu_use_b: false
+        ffn_use_sem: false
+    forward:
+      output_mode: tensor
+
+  # Fine-grained illumination-estimator ablation: BAIR only.
+  - name: BAIR-only
+    repo_root: ..
+    silence_stdout: true
+    builder:
+      type: class
+      file: basicsr/models/archs/ASANet_arch.py
+      package: basicsr.models.archs
+      class_name: ASANet
+      kwargs:
+        in_channels: 3
+        out_channels: 3
+        n_feat: 40
+        stage: 1
+        num_blocks: [1, 2, 2]
+        d_state: 16
+        illu_use_a: false
+        illu_use_b: true
+        ffn_use_sem: false
+    forward:
+      output_mode: tensor
+
+  - name: estimator_only
+    repo_root: ..
+    silence_stdout: true
+    builder:
+      type: class
+      file: basicsr/models/archs/ASANet_arch.py
+      package: basicsr.models.archs
+      class_name: ASANet
+      kwargs:
+        in_channels: 3
+        out_channels: 3
+        n_feat: 40
+        stage: 1
+        num_blocks: [1, 2, 2]
+        d_state: 16
+        illu_use_a: true
+        illu_use_b: true
+        ffn_use_sem: false
+    forward:
+      output_mode: tensor
+
+  - name: sefn_only
+    repo_root: ..
+    silence_stdout: true
+    builder:
+      type: class
+      file: basicsr/models/archs/ASANet_arch.py
+      package: basicsr.models.archs
+      class_name: ASANet
+      kwargs:
+        in_channels: 3
+        out_channels: 3
+        n_feat: 40
+        stage: 1
+        num_blocks: [1, 2, 2]
+        d_state: 16
+        illu_use_a: false
+        illu_use_b: false
+        ffn_use_sem: true
+    forward:
+      output_mode: tensor
+
+  - name: full
+    repo_root: ..
+    silence_stdout: true
+    builder:
+      type: class
+      file: basicsr/models/archs/ASANet_arch.py
+      package: basicsr.models.archs
+      class_name: ASANet
+      kwargs:
+        in_channels: 3
+        out_channels: 3
+        n_feat: 40
+        stage: 1
+        num_blocks: [1, 2, 2]
+        d_state: 16
+        illu_use_a: true
+        illu_use_b: true
+        ffn_use_sem: true
+    forward:
+      output_mode: tensor
+
+# For other SOTA repos, keep the same script and add more entries here.
+# The simplest form is:
+# - name: method_name
+#   repo_root: D:/code/other_repo
+#   silence_stdout: true
+#   builder:
+#     type: class
+#     module: path.to.module
+#     class_name: ModelClass
+#     kwargs: { ... }
+#   forward:
+#     output_mode: tensor
+#
+# If a repo cannot be benchmarked by directly calling model(x), write a tiny
+# wrapper factory inside that repo and switch to builder.type: function.
+# Optional checkpoint loading example:
+# checkpoint:
+#   path: path/to/weights.pth
+#   key: params
+#   strict: true
+#   strip_prefixes: ["module."]
